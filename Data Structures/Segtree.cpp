@@ -1,12 +1,3 @@
-#include <bits/stdc++.h>
-
-using namespace std;
-
-typedef long long int ll;
-typedef pair<int, int> ii;
-typedef vector<int> vi;
-typedef vector<ii> vii;  
-
 #define maxn 200010
 
 int n, q;
@@ -56,20 +47,3 @@ int get(int node, int l, int r, int x, int y){
 	int mid = (l+r)/2, nxt = 2*node;
 	return combine(get(nxt, l, mid, x, y), get(nxt+1, mid+1, r, x, y));
 }	
-
-int main(){
-	cin.tie(NULL);
-	ios_base::sync_with_stdio(false);		
-	int l, r;
-	cin >> n >> q;
-	for(int i = 0; i < n; i++){
-		cin >> v[i];
-	}
-	build(1, 0, n-1);
-	while(q--){
-		cin >> l >> r; //1-indexed
-		--l; --r; //0-indexed
-		cout << get(1, 0, n-1, l, r) << "\n";
-	}
-	return 0;
-}

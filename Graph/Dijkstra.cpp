@@ -1,3 +1,6 @@
+typedef pair<int, int> ii;
+typedef vector<ii> vii;
+
 #define INF 100000000
 #define maxn 110
 

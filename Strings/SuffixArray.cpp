@@ -1,15 +1,15 @@
 #include <bits/stdc++.h>
-
+ 
 using namespace std;
-
+ 
 typedef long long int ll;
 typedef pair<int, int> ii;
 typedef vector<int> vi;
 typedef vector<ii> vii;  
-
-
-string s; int n;
-
+ 
+ 
+string s, s2; int n;
+ 
 void countSort(vector<pair<pair<int, int>, int>> &a){
 	/*
 		The second half is sorted cause we can build the array
@@ -33,13 +33,12 @@ void countSort(vector<pair<pair<int, int>, int>> &a){
 	}
 	a = aNew;
 }	
-
+ 
 int main(){
 	cin.tie(NULL);
 	ios_base::sync_with_stdio(false);		
 	cin >> s; s += "$"; n = s.size();
 	vector<int> p(n), c(n); //Ordered and Equivalence Class
-	
 	//Doing the first step
 	vector<pair<char, int>> a(n);
 	for(int i = 0; i < n; i++) a[i] = {s[i], i};
@@ -53,7 +52,7 @@ int main(){
 			c[p[i]] = c[p[i-1]]+1;
 		}
 	}
-
+ 
 	//Make Transitions k -> k+1
 	int k = 0;
 	while((1<<k) < n){
@@ -74,10 +73,25 @@ int main(){
 		++k;
 	}
 
-	//Finished
-	for(int i = 0; i < n; i++){
-		cout << p[i] << " ";
+	//LCP - Longest Common Prefix	
+	int x, y;
+	vector<int> lcp(n);
+	k = 0;
+	for(int i = 0; i < (n-1); i++){
+		x = c[i]; //The position of suffix "i" in the array p
+		y = p[x-1]; //The previous
+		while(s[i+k] == s[y+k]) ++k;
+		lcp[x] = k;
+		k = max(k-1, 0);
 	}
+
+	//Finished	
+	for(int i = 0; i < n; i++)
+		cout << p[i] << " ";
 	cout << "\n";
+	for(int i = 1; i < n; i++)
+		cout << lcp[i] << " ";
+	cout << "\n";
+
 	return 0;
 }

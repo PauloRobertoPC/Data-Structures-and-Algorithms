@@ -38,6 +38,7 @@ void unionSet(int u, int v){
 }
 
 int kruskal(){
+	build();
 	sort(edgeList.begin(), edgeList.end());
 	int u, v, w, ans = 0;
 	for(int i = 0; i < edgeList.size(); i++){

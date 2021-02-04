@@ -1,6 +1,6 @@
 #define maxn 500500
 
-int n; //Cuidado com o n (melhor n alterar)
+int n;
 int bit[maxn]; 
 
 void update(int pos, int value){
